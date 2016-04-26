@@ -1,0 +1,27 @@
+
+
+Started GET "/" for ::1 at 2016-04-20 10:28:17 -0400
+Processing by Rails::WelcomeController#index as HTML
+  Rendered /Users/anncatton/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/railties-4.2.5/lib/rails/templates/rails/welcome/index.html.erb (2.3ms)
+Completed 200 OK in 23ms (Views: 12.9ms | ActiveRecord: 0.0ms)
+  [1m[36m (30.3ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL) [0m
+  [1m[35m (17.7ms)[0m  CREATE UNIQUE INDEX  "unique_schema_migrations" ON "schema_migrations"  ("version")
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreatePollResults (20160420145255)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (27.6ms)[0m  [1mCREATE TABLE "poll_results" ("id" serial primary key, "poll_number" character varying, "rejected" integer, "unmarked" integer, "declined" integer, "total_voter_turnout" integer, "total_electors" integer, "voting_place" character varying, "electoral_district" character varying, "election_year" integer, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35mSQL (11.9ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20160420145255"]]
+  [1m[36m (5.8ms)[0m  [1mCOMMIT[0m
+  [1m[35mActiveRecord::SchemaMigration Load (6.3ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (2.6ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'poll_results'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
